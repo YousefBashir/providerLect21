@@ -6,14 +6,15 @@ class TodoProvider extends ChangeNotifier{
   List <TaskModel> allTasks;
   List <TaskModel> completeTasks;
   List <TaskModel> incompleteTasks;
-  String myName='yousef Bashir';
+
   TodoProvider(){
     getAllTasks();
   }
-  changeTestName(String newName){
-    this.myName=newName;
-    notifyListeners();
-  }
+  // String myName='yousef Bashir';
+  // changeTestName(String newName){
+  //   this.myName=newName;
+  //   notifyListeners();
+  // }
   getAllTasks()async{
     this.allTasks=await DbHelper.dbHelper.getAllTasks();
     this.completeTasks=this.allTasks.where((element) => element.isComplete).toList();

@@ -7,10 +7,15 @@ import 'package:todo_app/widget/task_widget.dart';
 class InCompleteTasks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: Provider.of<TodoProvider>(context).incompleteTasks.length,
-        itemBuilder: (context, index) {
-          return Task(Provider.of<TodoProvider>(context).incompleteTasks[index]);
-        });
+    return Selector<TodoProvider,List<TaskModel>>(builder: (context,data,x){
+      return ListView.builder(
+      itemCount: data.length,
+    itemBuilder: (context, index) {
+    return Task(data[index]);
+    });
+    },
+        selector:(context,provider){
+      return provider.incompleteTasks;
+    });
   }
 }

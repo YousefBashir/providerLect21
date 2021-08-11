@@ -9,12 +9,13 @@ class NewTask extends StatefulWidget {
 }
 
 class _NewTaskState extends State<NewTask> {
-  bool isComplete;
+  bool isComplete=false;
   String taskName;
 
   saveTask() {
     Provider.of<TodoProvider>(context, listen: false)
         .insertNewTask(TaskModel(taskName: taskName, isComplete: isComplete));
+    Navigator.pop(context);
   }
 
   @override
